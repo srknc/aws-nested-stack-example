@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  DummyResource:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Ref resourceName
+Parameters:
+ resourceName:
+   Description: resource name
+   Type: String

@@ -1,0 +1,30 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  nestedSkeletonStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cloudformation-1548978758/nested-skeleton.yaml
+
+  nestedApp1Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cloudformation-1548978758/nested-app1.yaml
+      Parameters:
+          resourceName: !Ref resourceName1
+
+  nestedApp2Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3.amazonaws.com/cloudformation-1548978758/nested-app2.yaml
+      Parameters:
+          resourceName: !Ref resourceName2
+
+
+Parameters:
+  resourceName1:
+    Description: name of the dummy resource 1
+    Type: String
+  resourceName2:
+    Description: name of the dummy resource 2
+    Type: String
